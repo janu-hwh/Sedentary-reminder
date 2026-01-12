@@ -15,7 +15,7 @@ namespace Reminder
             InitializeComponent();
             this.Text = String.Format("关于 {0}", AssemblyTitle);
             //this.labelProductName.Text = AssemblyProduct;
-            //this.labelVersion.Text = String.Format("版本 {0}", AssemblyVersion);
+            this.label2.Text = String.Format("v{0}", AssemblyVersion);
             //this.labelCopyright.Text = AssemblyCopyright;
             //this.labelCompanyName.Text = AssemblyCompany;
             //this.textBoxDescription.Text = AssemblyDescription;

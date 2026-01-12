@@ -1,0 +1,4 @@
+# 忽略Reminder目录下的bin目录及其所有内容
+Reminder/bin/
+# 忽略Reminder目录下的obj目录及其所有内容
+Reminder/obj/
