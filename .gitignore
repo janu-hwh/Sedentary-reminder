@@ -2,3 +2,5 @@
 Reminder/bin/
 # 忽略Reminder目录下的obj目录及其所有内容
 Reminder/obj/
+.vs/
+.vscode/

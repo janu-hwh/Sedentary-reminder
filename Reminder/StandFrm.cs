@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -9,29 +9,28 @@ using System.Windows.Forms;
 
 namespace Reminder
 {
-    public partial class WorkFrm : Form
+    public partial class StandFrm : Form
     {
-        private int wrk_minutes;//工作时间(分)
-        private int wrk_seconds;//工作时间(秒)
-        private int wrk_m;
-        private int rst_seconds;//休息时间(秒)
         private int stand_minutes;//站立办公时间(分)
+        private int stand_seconds;//站立办公时间(秒)
+        private int stand_m;//备份站立办公时间
+        private int wrk_minutes;
+        private int rst_seconds;//休息时间(秒)
         private bool input_flag;//是否选中锁定键盘
         private bool left_flag;//鼠标左键是否点击
         private Point mouseoff;
-        public WorkFrm()
+        public StandFrm()
         {
             InitializeComponent();
         }
         //定义一个构造函数，接受前一个窗体传来的参数
-        public WorkFrm(int wrk_minutes, int rst_seconds, int stand_minutes, bool input_flag)
+        public StandFrm(int wrk_minutes, int rst_seconds, int stand_minutes, bool input_flag)
         {
             InitializeComponent();
             this.wrk_minutes = wrk_minutes;
             this.rst_seconds = rst_seconds;
             this.stand_minutes = stand_minutes;
-            //this.input_flag = input_flag;
-            this.wrk_m = wrk_minutes;
+            this.stand_m = stand_minutes;
             this.input_flag = input_flag;
 
             int x = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width - 148;
@@ -39,9 +38,9 @@ namespace Reminder
             Point p = new Point(x, y);
             this.PointToScreen(p);
             this.Location = p;
-            
+
         }
-        
+
         private void Form1_Load(object sender, EventArgs e)
         {
 
@@ -54,26 +53,27 @@ namespace Reminder
             //TaskBarSize = new Size(
             //                (ScreenSize.Width - (ScreenSize.Width - OutTaskBarSize.Width)),
             //                (ScreenSize.Height - OutTaskBarSize.Height)
-             //               );
-            
+            //               );
 
-            wrk_seconds = 0; 
 
-            if (wrk_seconds >= 10)
+            stand_seconds = 0;
+
+            if (stand_seconds >= 10)
             {
-                lblSecond.Text = wrk_seconds.ToString();
+                lblSecond.Text = stand_seconds.ToString();
             }
             else
             {
-                lblSecond.Text = "0" + wrk_seconds.ToString();
+                lblSecond.Text = "0" + stand_seconds.ToString();
             }
 
-            if (wrk_minutes>=10) {
-                lblMin.Text = wrk_minutes.ToString();
+            if (stand_minutes >= 10)
+            {
+                lblMin.Text = stand_minutes.ToString();
             }
             else
             {
-                lblMin.Text = "0"+wrk_minutes.ToString();
+                lblMin.Text = "0" + stand_minutes.ToString();
             }
         }
 
@@ -85,70 +85,70 @@ namespace Reminder
         /// <summary>
         /// 递归的方式倒计时
         /// </summary>
-        public  void timing()
+        public void timing()
         {
             Warn();
 
-            if (wrk_seconds > 0)
+            if (stand_seconds > 0)
             {
-                wrk_seconds = wrk_seconds - 1;
-                if (wrk_seconds >= 10)
+                stand_seconds = stand_seconds - 1;
+                if (stand_seconds >= 10)
                 {
-                    lblSecond.Text = wrk_seconds.ToString();
+                    lblSecond.Text = stand_seconds.ToString();
                 }
                 else
                 {
-                    lblSecond.Text = "0"+wrk_seconds.ToString();
+                    lblSecond.Text = "0" + stand_seconds.ToString();
                 }
-               
+
             }
             else //秒=0时，分钟-1
             {
                 timerWrk.Enabled = false;
-                wrk_minutes--;
-                if (wrk_minutes >= 10)
+                stand_minutes--;
+                if (stand_minutes >= 10)
                 {
-                    lblMin.Text = wrk_minutes.ToString();
+                    lblMin.Text = stand_minutes.ToString();
                 }
                 else
                 {
-                    lblMin.Text = "0"+wrk_minutes.ToString();
+                    lblMin.Text = "0" + stand_minutes.ToString();
                 }
-                
-                if (wrk_minutes > -1) //若分钟不为0，秒回到60，继续递归
+
+                if (stand_minutes > -1) //若分钟不为0，秒回到60，继续递归
                 {
                     timerWrk.Enabled = true;
-                    wrk_seconds = 60;
-                    
+                    stand_seconds = 60;
+
                     timing();
                 }
                 else
                 {
 
                     this.Close();
-                    RestFrm restFrm = new RestFrm(rst_seconds, wrk_m, stand_minutes, input_flag);
-                    restFrm.ShowDialog();                   
+                    WorkFrm workFrm = new WorkFrm(wrk_minutes, rst_seconds, stand_m, input_flag);
+                    workFrm.Show();
                 }
             }
         }
 
         /// <summary>
-        /// 工作的最后15秒提醒
+        /// 站立办公的最后15秒提醒
         /// </summary>
         private void Warn()
         {
-            if (wrk_minutes==0&&wrk_seconds<=16)
+            if (stand_minutes == 0 && stand_seconds <= 16)
             {
                 this.BackColor = Color.Red;
                 lblWarn.ForeColor = Color.Yellow;
-                lblWarn.Text = "该休息了！";
-                int x = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width) / 2 - this.Width/2;
-                int y = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Height) / 2 - this.Height/2;
+                lblWarn.Text = "该坐下了！";
+                int x = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width) / 2 - this.Width / 2;
+                int y = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Height) / 2 - this.Height / 2;
                 Point p = new Point(x, y);
                 this.PointToScreen(p);
                 this.Location = p;
-            }         
-            
+            }
+
         }
 
         /// <summary>
@@ -170,7 +170,7 @@ namespace Reminder
 
         private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-            
+
         }
 
         private void LblSecond_Click(object sender, EventArgs e)
@@ -222,21 +222,21 @@ namespace Reminder
             mouseUp();
         }
 
-      
+
 
         private void LblWarn_MouseDown(object sender, MouseEventArgs e)
         {
-            
+
         }
 
         private void LblWarn_MouseMove(object sender, MouseEventArgs e)
         {
-           
+
         }
 
         private void LblWarn_MouseUp(object sender, MouseEventArgs e)
         {
-           
+
         }
     }
 }

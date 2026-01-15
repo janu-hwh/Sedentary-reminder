@@ -16,17 +16,19 @@ namespace Reminder
         private int rst_m;//总秒数
         private int wrk_m;
         private int rst_m2;//备份总秒数
+        private int stand_m;//站立办公时间(分)
         private bool input_flag;
 
         public RestFrm()
         {
             InitializeComponent();
         }
-        public RestFrm(int rst_seconds,int wrk_minutes, bool input_flag)
+        public RestFrm(int rst_seconds,int wrk_minutes, int stand_minutes, bool input_flag)
         {
             InitializeComponent();
             this.rst_m = rst_seconds;
             this.wrk_m = wrk_minutes;
+            this.stand_m = stand_minutes;
             this.rst_m2 = rst_seconds;
             this.input_flag = input_flag;
         }
@@ -120,8 +122,8 @@ namespace Reminder
                     KeyboardBlocker.on();//解锁键盘
                 }
 
-                WorkFrm workFrm = new WorkFrm(wrk_m, rst_m2, input_flag);
-                workFrm.Show();
+                StandFrm standFrm = new StandFrm(wrk_m, rst_m2, stand_m, input_flag);
+                standFrm.Show();
                 this.Close();
             }
         }

@@ -28,220 +28,249 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainFrm));
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.btn_start = new System.Windows.Forms.Button();
-            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.numWrkTime = new System.Windows.Forms.NumericUpDown();
-            this.numRstTime = new System.Windows.Forms.NumericUpDown();
-            this.notifyIcon1 = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenuStrip1 = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.主窗体ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.exit_ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.关于ToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.label4 = new System.Windows.Forms.Label();
-            this.ckBoxInput = new System.Windows.Forms.CheckBox();
-            ((System.ComponentModel.ISupportInitialize)(this.numWrkTime)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numRstTime)).BeginInit();
-            this.contextMenuStrip1.SuspendLayout();
-            this.SuspendLayout();
+            label1 = new Label();
+            label2 = new Label();
+            label3 = new Label();
+            btn_start = new Button();
+            backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
+            label5 = new Label();
+            label6 = new Label();
+            numWrkTime = new NumericUpDown();
+            numRstTime = new NumericUpDown();
+            label7 = new Label();
+            numStandTime = new NumericUpDown();
+            label8 = new Label();
+            notifyIcon1 = new NotifyIcon(components);
+            contextMenuStrip1 = new ContextMenuStrip(components);
+            主窗体ToolStripMenuItem = new ToolStripMenuItem();
+            关于ToolStripMenuItem = new ToolStripMenuItem();
+            exit_ToolStripMenuItem = new ToolStripMenuItem();
+            label4 = new Label();
+            ckBoxInput = new CheckBox();
+            ((System.ComponentModel.ISupportInitialize)numWrkTime).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numRstTime).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)numStandTime).BeginInit();
+            contextMenuStrip1.SuspendLayout();
+            SuspendLayout();
             // 
             // label1
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(26, 50);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(65, 12);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "工作时间：";
+            label1.AutoSize = true;
+            label1.Location = new Point(34, 39);
+            label1.Margin = new Padding(4, 0, 4, 0);
+            label1.Name = "label1";
+            label1.Size = new Size(92, 17);
+            label1.TabIndex = 0;
+            label1.Text = "坐姿工作时间：";
             // 
             // label2
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(11, 19);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(67, 14);
-            this.label2.TabIndex = 3;
-            this.label2.Text = "计时器：";
+            label2.AutoSize = true;
+            label2.Font = new Font("宋体", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            label2.Location = new Point(14, 13);
+            label2.Margin = new Padding(4, 0, 4, 0);
+            label2.Name = "label2";
+            label2.Size = new Size(67, 14);
+            label2.TabIndex = 3;
+            label2.Text = "计时器：";
             // 
             // label3
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(26, 77);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(65, 12);
-            this.label3.TabIndex = 5;
-            this.label3.Text = "休息时间：";
+            label3.AutoSize = true;
+            label3.Location = new Point(34, 109);
+            label3.Margin = new Padding(4, 0, 4, 0);
+            label3.Name = "label3";
+            label3.Size = new Size(92, 17);
+            label3.TabIndex = 5;
+            label3.Text = "休息活动时间：";
             // 
             // btn_start
             // 
-            this.btn_start.BackColor = System.Drawing.Color.Transparent;
-            this.btn_start.FlatAppearance.BorderColor = System.Drawing.Color.DimGray;
-            this.btn_start.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_start.Location = new System.Drawing.Point(71, 178);
-            this.btn_start.Name = "btn_start";
-            this.btn_start.Size = new System.Drawing.Size(75, 23);
-            this.btn_start.TabIndex = 11;
-            this.btn_start.Text = "开始";
-            this.btn_start.UseVisualStyleBackColor = false;
-            this.btn_start.Click += new System.EventHandler(this.Btn_start_Click);
+            btn_start.BackColor = Color.Transparent;
+            btn_start.FlatAppearance.BorderColor = Color.DimGray;
+            btn_start.FlatStyle = FlatStyle.Flat;
+            btn_start.Location = new Point(79, 199);
+            btn_start.Margin = new Padding(4);
+            btn_start.Name = "btn_start";
+            btn_start.Size = new Size(88, 33);
+            btn_start.TabIndex = 11;
+            btn_start.Text = "开始";
+            btn_start.UseVisualStyleBackColor = false;
+            btn_start.Click += Btn_start_Click;
             // 
             // label5
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(146, 51);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(53, 12);
-            this.label5.TabIndex = 14;
-            this.label5.Text = "（分钟）";
+            label5.AutoSize = true;
+            label5.Location = new Point(180, 40);
+            label5.Margin = new Padding(4, 0, 4, 0);
+            label5.Name = "label5";
+            label5.Size = new Size(56, 17);
+            label5.TabIndex = 14;
+            label5.Text = "（分钟）";
             // 
             // label6
-            //
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(146, 78);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(53, 12);
-            this.label6.TabIndex = 15;
-            this.label6.Text = "（秒）";
+            // 
+            label6.AutoSize = true;
+            label6.Location = new Point(180, 110);
+            label6.Margin = new Padding(4, 0, 4, 0);
+            label6.Name = "label6";
+            label6.Size = new Size(44, 17);
+            label6.TabIndex = 15;
+            label6.Text = "（秒）";
             // 
             // numWrkTime
             // 
-            this.numWrkTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numWrkTime.Location = new System.Drawing.Point(96, 47);
-            this.numWrkTime.Maximum = new decimal(new int[] {
-            120,
-            0,
-            0,
-            0});
-            this.numWrkTime.Name = "numWrkTime";
-            this.numWrkTime.Size = new System.Drawing.Size(51, 21);
-            this.numWrkTime.TabIndex = 16;
-            this.numWrkTime.Value = new decimal(new int[] {
-            60,
-            0,
-            0,
-            0});
+            numWrkTime.BorderStyle = BorderStyle.FixedSingle;
+            numWrkTime.Location = new Point(122, 35);
+            numWrkTime.Margin = new Padding(4);
+            numWrkTime.Maximum = new decimal(new int[] { 120, 0, 0, 0 });
+            numWrkTime.Name = "numWrkTime";
+            numWrkTime.Size = new Size(59, 23);
+            numWrkTime.TabIndex = 16;
+            numWrkTime.Value = new decimal(new int[] { 60, 0, 0, 0 });
             // 
             // numRstTime
-            //
-            this.numRstTime.BackColor = System.Drawing.Color.White;
-            this.numRstTime.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.numRstTime.Location = new System.Drawing.Point(95, 74);
-            this.numRstTime.Minimum = new decimal(new int[] {
-            1,
-            0,
-            0,
-            0});
-            this.numRstTime.Maximum = new decimal(new int[] {
-            600,
-            0,
-            0,
-            0});
-            this.numRstTime.Name = "numRstTime";
-            this.numRstTime.Size = new System.Drawing.Size(51, 21);
-            this.numRstTime.TabIndex = 17;
-            this.numRstTime.Value = new decimal(new int[] {
-            10,
-            0,
-            0,
-            0});
+            // 
+            numRstTime.BackColor = Color.White;
+            numRstTime.BorderStyle = BorderStyle.FixedSingle;
+            numRstTime.Location = new Point(122, 107);
+            numRstTime.Margin = new Padding(4);
+            numRstTime.Maximum = new decimal(new int[] { 600, 0, 0, 0 });
+            numRstTime.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numRstTime.Name = "numRstTime";
+            numRstTime.Size = new Size(59, 23);
+            numRstTime.TabIndex = 17;
+            numRstTime.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            // 
+            // label7
+            // 
+            label7.AutoSize = true;
+            label7.Location = new Point(34, 74);
+            label7.Margin = new Padding(4, 0, 4, 0);
+            label7.Name = "label7";
+            label7.Size = new Size(92, 17);
+            label7.TabIndex = 20;
+            label7.Text = "站立工作时间：";
+            // 
+            // numStandTime
+            // 
+            numStandTime.BackColor = Color.White;
+            numStandTime.BorderStyle = BorderStyle.FixedSingle;
+            numStandTime.Location = new Point(122, 71);
+            numStandTime.Margin = new Padding(4);
+            numStandTime.Maximum = new decimal(new int[] { 120, 0, 0, 0 });
+            numStandTime.Minimum = new decimal(new int[] { 1, 0, 0, 0 });
+            numStandTime.Name = "numStandTime";
+            numStandTime.Size = new Size(59, 23);
+            numStandTime.TabIndex = 21;
+            numStandTime.Value = new decimal(new int[] { 10, 0, 0, 0 });
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(180, 75);
+            label8.Margin = new Padding(4, 0, 4, 0);
+            label8.Name = "label8";
+            label8.Size = new Size(56, 17);
+            label8.TabIndex = 22;
+            label8.Text = "（分钟）";
             // 
             // notifyIcon1
             // 
-            this.notifyIcon1.ContextMenuStrip = this.contextMenuStrip1;
-            this.notifyIcon1.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon1.Icon")));
-            this.notifyIcon1.Text = "Reminder";
-            this.notifyIcon1.Visible = true;
+            notifyIcon1.ContextMenuStrip = contextMenuStrip1;
+            notifyIcon1.Icon = (Icon)resources.GetObject("notifyIcon1.Icon");
+            notifyIcon1.Text = "Reminder";
+            notifyIcon1.Visible = true;
             // 
             // contextMenuStrip1
             // 
-            this.contextMenuStrip1.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
-            this.contextMenuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.主窗体ToolStripMenuItem,
-            this.关于ToolStripMenuItem,
-            this.exit_ToolStripMenuItem});
-            this.contextMenuStrip1.Name = "contextMenuStrip1";
-            this.contextMenuStrip1.Size = new System.Drawing.Size(181, 92);
+            contextMenuStrip1.BackgroundImageLayout = ImageLayout.Center;
+            contextMenuStrip1.Items.AddRange(new ToolStripItem[] { 主窗体ToolStripMenuItem, 关于ToolStripMenuItem, exit_ToolStripMenuItem });
+            contextMenuStrip1.Name = "contextMenuStrip1";
+            contextMenuStrip1.Size = new Size(113, 70);
             // 
             // 主窗体ToolStripMenuItem
             // 
-            this.主窗体ToolStripMenuItem.Name = "主窗体ToolStripMenuItem";
-            this.主窗体ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.主窗体ToolStripMenuItem.Text = "首选项";
-            this.主窗体ToolStripMenuItem.Click += new System.EventHandler(this.主窗体ToolStripMenuItem_Click);
-            // 
-            // exit_ToolStripMenuItem
-            // 
-            this.exit_ToolStripMenuItem.Name = "exit_ToolStripMenuItem";
-            this.exit_ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.exit_ToolStripMenuItem.Text = "退出";
-            this.exit_ToolStripMenuItem.Click += new System.EventHandler(this.退出ToolStripMenuItem_Click);
+            主窗体ToolStripMenuItem.Name = "主窗体ToolStripMenuItem";
+            主窗体ToolStripMenuItem.Size = new Size(112, 22);
+            主窗体ToolStripMenuItem.Text = "首选项";
+            主窗体ToolStripMenuItem.Click += 主窗体ToolStripMenuItem_Click;
             // 
             // 关于ToolStripMenuItem
             // 
-            this.关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
-            this.关于ToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.关于ToolStripMenuItem.Text = "关于";
-            this.关于ToolStripMenuItem.Click += new System.EventHandler(this.关于ToolStripMenuItem_Click);
+            关于ToolStripMenuItem.Name = "关于ToolStripMenuItem";
+            关于ToolStripMenuItem.Size = new Size(112, 22);
+            关于ToolStripMenuItem.Text = "关于";
+            关于ToolStripMenuItem.Click += 关于ToolStripMenuItem_Click;
+            // 
+            // exit_ToolStripMenuItem
+            // 
+            exit_ToolStripMenuItem.Name = "exit_ToolStripMenuItem";
+            exit_ToolStripMenuItem.Size = new Size(112, 22);
+            exit_ToolStripMenuItem.Text = "退出";
+            exit_ToolStripMenuItem.Click += 退出ToolStripMenuItem_Click;
             // 
             // label4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("宋体", 10.5F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(11, 117);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(52, 14);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "选项：";
+            label4.AutoSize = true;
+            label4.Font = new Font("宋体", 10.5F, FontStyle.Bold, GraphicsUnit.Point, 134);
+            label4.Location = new Point(14, 139);
+            label4.Margin = new Padding(4, 0, 4, 0);
+            label4.Name = "label4";
+            label4.Size = new Size(52, 14);
+            label4.TabIndex = 18;
+            label4.Text = "选项：";
             // 
             // ckBoxInput
             // 
-            this.ckBoxInput.AutoSize = true;
-            this.ckBoxInput.Checked = true;
-            this.ckBoxInput.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.ckBoxInput.Location = new System.Drawing.Point(28, 144);
-            this.ckBoxInput.Name = "ckBoxInput";
-            this.ckBoxInput.Size = new System.Drawing.Size(144, 16);
-            this.ckBoxInput.TabIndex = 19;
-            this.ckBoxInput.Text = "休息时屏蔽键盘和鼠标";
-            this.ckBoxInput.UseVisualStyleBackColor = true;
+            ckBoxInput.AutoSize = true;
+            ckBoxInput.Checked = true;
+            ckBoxInput.CheckState = CheckState.Checked;
+            ckBoxInput.Location = new Point(34, 169);
+            ckBoxInput.Margin = new Padding(4);
+            ckBoxInput.Name = "ckBoxInput";
+            ckBoxInput.Size = new Size(147, 21);
+            ckBoxInput.TabIndex = 19;
+            ckBoxInput.Text = "休息时屏蔽键盘和鼠标";
+            ckBoxInput.UseVisualStyleBackColor = true;
             // 
             // MainFrm
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
-            this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.White;
-            this.ClientSize = new System.Drawing.Size(213, 226);
-            this.Controls.Add(this.ckBoxInput);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.numRstTime);
-            this.Controls.Add(this.numWrkTime);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.btn_start);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
-            this.MaximizeBox = false;
-            this.MinimizeBox = false;
-            this.Name = "MainFrm";
-            this.ShowInTaskbar = false;
-            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sedentary Reminder";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.MainFrm_FormClosing);
-            this.Load += new System.EventHandler(this.MainFrm_Load);
-            ((System.ComponentModel.ISupportInitialize)(this.numWrkTime)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numRstTime)).EndInit();
-            this.contextMenuStrip1.ResumeLayout(false);
-            this.ResumeLayout(false);
-            this.PerformLayout();
+            AutoScaleDimensions = new SizeF(7F, 17F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.White;
+            ClientSize = new Size(248, 245);
+            Controls.Add(ckBoxInput);
+            Controls.Add(label4);
+            Controls.Add(numRstTime);
+            Controls.Add(numWrkTime);
+            Controls.Add(label6);
+            Controls.Add(label5);
+            Controls.Add(numStandTime);
+            Controls.Add(label8);
+            Controls.Add(label7);
+            Controls.Add(btn_start);
+            Controls.Add(label3);
+            Controls.Add(label2);
+            Controls.Add(label1);
+            FormBorderStyle = FormBorderStyle.FixedDialog;
+            Margin = new Padding(4);
+            MaximizeBox = false;
+            MinimizeBox = false;
+            Name = "MainFrm";
+            ShowInTaskbar = false;
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "Sedentary Reminder";
+            FormClosing += MainFrm_FormClosing;
+            Load += MainFrm_Load;
+            ((System.ComponentModel.ISupportInitialize)numWrkTime).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numRstTime).EndInit();
+            ((System.ComponentModel.ISupportInitialize)numStandTime).EndInit();
+            contextMenuStrip1.ResumeLayout(false);
+            ResumeLayout(false);
+            PerformLayout();
 
         }
 
@@ -263,5 +292,8 @@
         private System.Windows.Forms.ToolStripMenuItem 关于ToolStripMenuItem;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox ckBoxInput;
+        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.NumericUpDown numStandTime;
+        private System.Windows.Forms.Label label8;
     }
 }

@@ -1,6 +1,6 @@
-﻿namespace Reminder
+namespace Reminder
 {
-    partial class WorkFrm
+    partial class StandFrm
     {
         /// <summary>
         /// 必需的设计器变量。
@@ -29,7 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(WorkFrm));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(StandFrm));
             timerWrk = new System.Windows.Forms.Timer(components);
             lblSecond = new Label();
             lblMin = new Label();
@@ -113,16 +113,16 @@
             lblWarn.Name = "lblWarn";
             lblWarn.Size = new Size(93, 20);
             lblWarn.TabIndex = 7;
-            lblWarn.Text = "注意坐姿";
+            lblWarn.Text = "站立办公";
             lblWarn.Click += Label1_Click;
             lblWarn.MouseDown += WorkFrm_MouseDown;
             lblWarn.MouseMove += WorkFrm_MouseMove;
             lblWarn.MouseUp += WorkFrm_MouseUp;
             // 
-            // WorkFrm
+            // StandFrm
             // 
             AutoScaleMode = AutoScaleMode.None;
-            BackColor = Color.ForestGreen;
+            BackColor = Color.DodgerBlue;
             ClientSize = new Size(148, 55);
             Controls.Add(label3);
             Controls.Add(lblWarn);
@@ -132,11 +132,11 @@
             Cursor = Cursors.SizeAll;
             FormBorderStyle = FormBorderStyle.None;
             MaximizeBox = false;
-            Name = "WorkFrm";
+            Name = "StandFrm";
             Opacity = 0.85D;
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.Manual;
-            Text = "wrkFrm";
+            Text = "standFrm";
             TopMost = true;
             FormClosing += MainFrm_FormClosing;
             Load += Form1_Load;
@@ -157,4 +157,3 @@
         private System.Windows.Forms.Label lblWarn;
     }
 }
-

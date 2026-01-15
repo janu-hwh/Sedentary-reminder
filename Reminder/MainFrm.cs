@@ -37,7 +37,8 @@ namespace Reminder
 
             int wrkTime = (int)this.numWrkTime.Value;
             int rstTime = (int)this.numRstTime.Value;
-            wrkFrm = new WorkFrm(wrkTime,rstTime,input_flag);
+            int standTime = (int)this.numStandTime.Value;
+            wrkFrm = new WorkFrm(wrkTime, rstTime, standTime, input_flag);
             wrkFrm.Show();
             //MainFrm.Visible = false;
             this.Visible = false;
