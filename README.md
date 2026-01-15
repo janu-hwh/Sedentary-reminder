@@ -1,9 +1,5 @@
 # Sedentary-reminder 久坐提醒小工具
 
-## Repo rosters
-[![Stargazers repo roster for @wjbgis/Sedentary-reminder](https://reporoster.com/stars/wjbgis/Sedentary-reminder)](https://github.com/janu-hwh/Sedentary-reminder/stargazers)
-[![Forkers repo roster for @wjbgis/Sedentary-reminder](https://reporoster.com/forks/wjbgis/Sedentary-reminder)](https://github.com/janu-hwh/Sedentary-reminder/network/members)
-
 ## 下载  
 
 [Download](https://github.com/janu-hwh/Sedentary-reminder/releases)
@@ -39,4 +35,11 @@
 ## 致谢
 
 感谢 [netnr](https://github.com/netnr) 提的宝贵建议，让我有了继续更新的动力
+
+## V1.5.0版本更新 BY janu-hwh @2026-01-15
+
+* 项目代码框架升级至.NET 8
+* 增加了站立工作时间设置功能，支持与坐姿工作时间区分设置
+* 休息时间支持按秒为单位设置，默认值修改为10秒
+* 支持记忆上一次的设置信息，避免每次打开软件都需要重复设置
 
