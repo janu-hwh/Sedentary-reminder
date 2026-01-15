@@ -263,6 +263,7 @@
             ShowInTaskbar = false;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Sedentary Reminder";
+            TopMost = true;
             FormClosing += MainFrm_FormClosing;
             Load += MainFrm_Load;
             ((System.ComponentModel.ISupportInitialize)numWrkTime).EndInit();
