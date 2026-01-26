@@ -18,12 +18,13 @@ namespace Reminder
         private int rst_m2;//备份总秒数
         private int stand_m;//站立办公时间(分)
         private bool input_flag;
+        private bool strong_reminder_flag;
 
         public RestFrm()
         {
             InitializeComponent();
         }
-        public RestFrm(int rst_seconds,int wrk_minutes, int stand_minutes, bool input_flag)
+        public RestFrm(int rst_seconds,int wrk_minutes, int stand_minutes, bool input_flag, bool strong_reminder_flag)
         {
             InitializeComponent();
             this.rst_m = rst_seconds;
@@ -31,6 +32,7 @@ namespace Reminder
             this.stand_m = stand_minutes;
             this.rst_m2 = rst_seconds;
             this.input_flag = input_flag;
+            this.strong_reminder_flag = strong_reminder_flag;
         }
         
         private void RestFrm_Load(object sender, EventArgs e)
@@ -124,12 +126,12 @@ namespace Reminder
 
                 if (stand_m > 0)
                 {
-                    StandFrm standFrm = new StandFrm(wrk_m, rst_m2, stand_m, input_flag);
+                    StandFrm standFrm = new StandFrm(wrk_m, rst_m2, stand_m, input_flag, strong_reminder_flag);
                     standFrm.Show();
                 }
                 else
                 {
-                    WorkFrm workFrm = new WorkFrm(wrk_m, rst_m2, stand_m, input_flag);
+                    WorkFrm workFrm = new WorkFrm(wrk_m, rst_m2, stand_m, input_flag, strong_reminder_flag);
                     workFrm.Show();
                 }
                 this.Close();

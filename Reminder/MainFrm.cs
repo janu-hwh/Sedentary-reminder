@@ -62,6 +62,7 @@ namespace Reminder
             numRstTime.Value = Math.Max(Properties.Settings.Default.RestTime, (int)numRstTime.Minimum);
             numStandTime.Value = Math.Max(Properties.Settings.Default.StandTime, (int)numStandTime.Minimum);
             ckBoxInput.Checked = Properties.Settings.Default.BlockInput;
+            ckBoxStrongReminder.Checked = Properties.Settings.Default.StrongReminder;
             ckBoxAutoStart.Checked = IsAutoStartEnabled();
             ckBoxAutoStart.CheckedChanged += CkBoxAutoStart_CheckedChanged;
             UpdateButtonVisibility();
@@ -75,14 +76,16 @@ namespace Reminder
             Properties.Settings.Default.RestTime = (int)this.numRstTime.Value;
             Properties.Settings.Default.StandTime = (int)this.numStandTime.Value;
             Properties.Settings.Default.BlockInput = this.ckBoxInput.Checked;
+            Properties.Settings.Default.StrongReminder = this.ckBoxStrongReminder.Checked;
             Properties.Settings.Default.Save();
 
             bool input_flag = this.ckBoxInput.Checked;
+            bool strong_reminder_flag = this.ckBoxStrongReminder.Checked;
 
             int wrkTime = (int)this.numWrkTime.Value;
             int rstTime = (int)this.numRstTime.Value;
             int standTime = (int)this.numStandTime.Value;
-            wrkFrm = new WorkFrm(wrkTime, rstTime, standTime, input_flag);
+            wrkFrm = new WorkFrm(wrkTime, rstTime, standTime, input_flag, strong_reminder_flag);
             wrkFrm.Show();
             //MainFrm.Visible = false;
             this.Visible = false;

@@ -138,7 +138,7 @@
             StartPosition = FormStartPosition.Manual;
             Text = "wrkFrm";
             TopMost = true;
-            FormClosing += MainFrm_FormClosing;
+            FormClosing += WorkFrm_FormClosing;
             Load += Form1_Load;
             MouseDown += WorkFrm_MouseDown;
             MouseMove += WorkFrm_MouseMove;

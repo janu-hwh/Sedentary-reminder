@@ -138,7 +138,7 @@ namespace Reminder
             StartPosition = FormStartPosition.Manual;
             Text = "standFrm";
             TopMost = true;
-            FormClosing += MainFrm_FormClosing;
+            FormClosing += StandFrm_FormClosing;
             Load += Form1_Load;
             MouseDown += WorkFrm_MouseDown;
             MouseMove += WorkFrm_MouseMove;

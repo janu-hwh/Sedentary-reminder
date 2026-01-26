@@ -82,5 +82,17 @@ namespace Reminder.Properties {
                 this["AutoStart"] = value;
             }
         }
+
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("False")]
+        public bool StrongReminder {
+            get {
+                return ((bool)(this["StrongReminder"]));
+            }
+            set {
+                this["StrongReminder"] = value;
+            }
+        }
     }
 }

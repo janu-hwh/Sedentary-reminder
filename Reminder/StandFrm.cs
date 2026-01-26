@@ -17,14 +17,28 @@ namespace Reminder
         private int wrk_minutes;
         private int rst_seconds;//休息时间(秒)
         private bool input_flag;//是否选中锁定键盘
+        private bool strong_reminder_flag;//是否启用强提醒
         private bool left_flag;//鼠标左键是否点击
+        private bool allow_move = true;//是否允许移动窗体
         private Point mouseoff;
+        private System.Windows.Forms.Timer blinkTimer;//闪烁计时器
+        private System.Windows.Forms.Timer shakeTimer;//抖动计时器
+        private System.Windows.Forms.Timer colorTimer;//颜色变换计时器
+        private int center_x;//窗体中心X坐标
+        private int center_y;//窗体中心Y坐标
+        private Random rand = new Random();
+        private Color[] reminderColors = new Color[]
+        {
+            Color.Orange, Color.Brown,
+            Color.Green, Color.Blue, Color.Indigo, Color.Violet,
+            Color.Pink, Color.Cyan, Color.Magenta
+        };
         public StandFrm()
         {
             InitializeComponent();
         }
         //定义一个构造函数，接受前一个窗体传来的参数
-        public StandFrm(int wrk_minutes, int rst_seconds, int stand_minutes, bool input_flag)
+        public StandFrm(int wrk_minutes, int rst_seconds, int stand_minutes, bool input_flag, bool strong_reminder_flag)
         {
             InitializeComponent();
             this.wrk_minutes = wrk_minutes;
@@ -32,11 +46,27 @@ namespace Reminder
             this.stand_minutes = stand_minutes;
             this.stand_m = stand_minutes;
             this.input_flag = input_flag;
+            this.strong_reminder_flag = strong_reminder_flag;
+
+            center_x = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width) / 2 - this.Width / 2;
+            center_y = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Height) / 2 - this.Height / 2;
+
+            // 初始化强提醒Timer
+            blinkTimer = new System.Windows.Forms.Timer();
+            blinkTimer.Interval = 150; // 150ms闪烁一次
+            blinkTimer.Tick += BlinkTimer_Tick;
+
+            shakeTimer = new System.Windows.Forms.Timer();
+            shakeTimer.Interval = 30; // 30ms抖动一次
+            shakeTimer.Tick += ShakeTimer_Tick;
+
+            colorTimer = new System.Windows.Forms.Timer();
+            colorTimer.Interval = 200; // 200ms变换一次颜色
+            colorTimer.Tick += ColorTimer_Tick;
 
             int x = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width - 148;
             int y = System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Height - 56;
             Point p = new Point(x, y);
-            this.PointToScreen(p);
             this.Location = p;
 
         }
@@ -126,7 +156,7 @@ namespace Reminder
                 {
 
                     this.Close();
-                    WorkFrm workFrm = new WorkFrm(wrk_minutes, rst_seconds, stand_m, input_flag);
+                    WorkFrm workFrm = new WorkFrm(wrk_minutes, rst_seconds, stand_m, input_flag, strong_reminder_flag);
                     workFrm.Show();
                 }
             }
@@ -139,14 +169,52 @@ namespace Reminder
         {
             if (stand_minutes == 0 && stand_seconds <= 16)
             {
-                this.BackColor = Color.Red;
-                lblWarn.ForeColor = Color.Yellow;
-                lblWarn.Text = "该坐下了！";
-                int x = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Width) / 2 - this.Width / 2;
-                int y = (System.Windows.Forms.Screen.PrimaryScreen.WorkingArea.Size.Height) / 2 - this.Height / 2;
-                Point p = new Point(x, y);
-                this.PointToScreen(p);
-                this.Location = p;
+                if (stand_seconds == 16)
+                {
+                    this.BackColor = Color.Red;
+                    lblWarn.ForeColor = Color.Yellow;
+                    lblWarn.Text = "该坐下了！";
+                    Point p = new Point(center_x, center_y);
+                    this.Location = p;
+                    allow_move = false;
+                }
+
+                // 强提醒
+                if (strong_reminder_flag)
+                {
+                    // 结束前15秒：闪烁
+                    if (!blinkTimer.Enabled && stand_seconds == 16)
+                    {
+                        blinkTimer.Start();
+                    }
+                    if (stand_seconds == 6)
+                    {
+                        // 停止闪烁
+                        blinkTimer.Stop();
+                        // 确保文字可见
+                        lblWarn.Visible = true;
+                        int flag = rand.Next(2);
+                        // 结束前5秒：抖动或变换颜色
+                        if (flag == 0 && !shakeTimer.Enabled)
+                        {
+                            shakeTimer.Start();
+                        }
+                        else if (flag == 1 && !colorTimer.Enabled)
+                        {
+                            colorTimer.Start();
+                        }
+                    }
+                    // 最后0秒停止强提醒
+                    if (stand_seconds == 0)
+                    {
+                        blinkTimer.Stop();
+                        shakeTimer.Stop();
+                        colorTimer.Stop();
+                        // 确保文字可见
+                        lblWarn.Visible = true;
+                        this.BackColor = Color.Red;
+                    }
+                }
             }
 
         }
@@ -168,9 +236,12 @@ namespace Reminder
         }
 
 
-        private void MainFrm_FormClosing(object sender, FormClosingEventArgs e)
+        private void StandFrm_FormClosing(object sender, FormClosingEventArgs e)
         {
-
+            // 停止所有Timer以防止访问已释放的对象
+            blinkTimer.Stop();
+            shakeTimer.Stop();
+            colorTimer.Stop();
         }
 
         private void LblSecond_Click(object sender, EventArgs e)
@@ -193,7 +264,7 @@ namespace Reminder
         }
         private void mouseMove()
         {
-            if (left_flag)
+            if (left_flag && allow_move)
             {
                 Point mouseSet = Control.MousePosition;
                 mouseSet.Offset(-mouseoff.X, -mouseoff.Y);//这里注意下-的用意，offset
@@ -237,6 +308,63 @@ namespace Reminder
         private void LblWarn_MouseUp(object sender, MouseEventArgs e)
         {
 
+        }
+
+        private void BlinkTimer_Tick(object sender, EventArgs e)
+        {
+            // 检查窗体是否已经被释放
+            if (this.IsDisposed || !this.IsHandleCreated)
+            {
+                blinkTimer.Stop();
+                return;
+            }
+            // 切换可见状态
+            lblWarn.Visible = !lblWarn.Visible;
+        }
+
+        private void ColorTimer_Tick(object sender, EventArgs e)
+        {
+            // 检查窗体是否已经被释放
+            if (this.IsDisposed || !this.IsHandleCreated)
+            {
+                colorTimer.Stop();
+                return;
+            }
+            // 随机变换背景颜色
+            this.BackColor = reminderColors[rand.Next(reminderColors.Length)];
+        }
+
+        private void ShakeTimer_Tick(object sender, EventArgs e)
+        {
+            // 检查窗体是否已经被释放
+            if (this.IsDisposed || !this.IsHandleCreated)
+            {
+                shakeTimer.Stop();
+                return;
+            }
+
+            // 抖动逻辑
+            int offset = 1;
+            if (this.Location.X == center_x && this.Location.Y == center_y)
+            {
+                this.Location = new Point(center_x + offset, center_y - offset);
+            }
+            else if (this.Location.X == center_x + offset && this.Location.Y == center_y - offset)
+            {
+                this.Location = new Point(center_x - offset, center_y - offset);
+            }
+            else if (this.Location.X == center_x - offset && this.Location.Y == center_y - offset)
+            {
+                this.Location = new Point(center_x + offset, center_y + offset);
+            }
+            else if (this.Location.X == center_x + offset && this.Location.Y == center_y + offset)
+            {
+                this.Location = new Point(center_x - offset, center_y + offset);
+            }
+            else if (this.Location.X == center_x - offset && this.Location.Y == center_y + offset)
+            {
+                this.Location = new Point(center_x + offset, center_y - offset);
+            }
         }
     }
 }

@@ -50,6 +50,7 @@
             label4 = new Label();
             ckBoxInput = new CheckBox();
             ckBoxAutoStart = new CheckBox();
+            ckBoxStrongReminder = new CheckBox();
             ((System.ComponentModel.ISupportInitialize)numWrkTime).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numRstTime).BeginInit();
             ((System.ComponentModel.ISupportInitialize)numStandTime).BeginInit();
@@ -92,7 +93,7 @@
             btn_start.BackColor = Color.Transparent;
             btn_start.FlatAppearance.BorderColor = Color.DimGray;
             btn_start.FlatStyle = FlatStyle.Flat;
-            btn_start.Location = new Point(79, 225);
+            btn_start.Location = new Point(79, 248);
             btn_start.Margin = new Padding(4);
             btn_start.Name = "btn_start";
             btn_start.Size = new Size(88, 33);
@@ -229,31 +230,43 @@
             ckBoxInput.AutoSize = true;
             ckBoxInput.Checked = true;
             ckBoxInput.CheckState = CheckState.Checked;
-            ckBoxInput.Location = new Point(34, 169);
+            ckBoxInput.Location = new Point(34, 163);
             ckBoxInput.Margin = new Padding(4);
             ckBoxInput.Name = "ckBoxInput";
             ckBoxInput.Size = new Size(147, 21);
             ckBoxInput.TabIndex = 19;
             ckBoxInput.Text = "休息时屏蔽键盘和鼠标";
             ckBoxInput.UseVisualStyleBackColor = true;
-            //
+            // 
             // ckBoxAutoStart
-            //
+            // 
             ckBoxAutoStart.AutoSize = true;
-            ckBoxAutoStart.Location = new Point(34, 195);
+            ckBoxAutoStart.Location = new Point(34, 219);
             ckBoxAutoStart.Margin = new Padding(4);
             ckBoxAutoStart.Name = "ckBoxAutoStart";
-            ckBoxAutoStart.Size = new Size(95, 21);
+            ckBoxAutoStart.Size = new Size(87, 21);
             ckBoxAutoStart.TabIndex = 20;
             ckBoxAutoStart.Text = "开机自启动";
             ckBoxAutoStart.UseVisualStyleBackColor = true;
+            // 
+            // ckBoxStrongReminder
+            // 
+            ckBoxStrongReminder.AutoSize = true;
+            ckBoxStrongReminder.Location = new Point(34, 191);
+            ckBoxStrongReminder.Margin = new Padding(4);
+            ckBoxStrongReminder.Name = "ckBoxStrongReminder";
+            ckBoxStrongReminder.Size = new Size(87, 21);
+            ckBoxStrongReminder.TabIndex = 21;
+            ckBoxStrongReminder.Text = "启用强提醒";
+            ckBoxStrongReminder.UseVisualStyleBackColor = true;
             // 
             // MainFrm
             // 
             AutoScaleDimensions = new SizeF(7F, 17F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
-            ClientSize = new Size(248, 270);
+            ClientSize = new Size(248, 288);
+            Controls.Add(ckBoxStrongReminder);
             Controls.Add(ckBoxAutoStart);
             Controls.Add(ckBoxInput);
             Controls.Add(label4);
@@ -307,6 +320,7 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox ckBoxInput;
         private System.Windows.Forms.CheckBox ckBoxAutoStart;
+        private System.Windows.Forms.CheckBox ckBoxStrongReminder;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.NumericUpDown numStandTime;
         private System.Windows.Forms.Label label8;
